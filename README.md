@@ -1,2 +1,2 @@
 # odin-library
-A javascript project to practice objects;
+A javascript project to practice objects.
