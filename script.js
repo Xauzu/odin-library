@@ -28,8 +28,11 @@ function createBookElement(title, author, pages, read, i) {
 
     // Event handler to allow user to change checked state
     bRead.addEventListener('change', (e) => {
+        let id = newBook.getAttribute('data-id');
         if (e.target.checked) newBook.classList.add('read');
         else newBook.classList.remove('read');
+
+        myLibrary[id]['read'] = e.target.checked;
     })
 
     newBook.appendChild(bTitle);
