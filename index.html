@@ -9,17 +9,22 @@
 </head>
 <body>
     <div class="libraryDisplay"></div>
-    <div class="BookForm">
-        <form book>
+    <div>
+        <form book class="bookForm">
             <label for="title">Book Title </label>
             <input type="text" id="title" name="title" minlength="1" required />
             <label for="author">Author </label>
             <input type="text" id="author" name="author" minlength="1" required />
             <label for="pages">Page Count </label>
             <input type="number" id="pages" name="pages" min="1" required />
-            <label for="read">Read </label>
-            <input type="checkbox" id="read" name="read" />
-            <input type="submit" id="addBookButton" value="Add Book">
+            <div class="readCheckBox">
+                <label for="read">Read </label>
+                <input type="checkbox" id="read" name="read" />
+            </div>
+            <div class="formControl">
+                <input type="submit" id="addBookButton" value="Add Book">
+                <input type="submit" id="cancelButton" value="Cancel">
+            </div>
         </form>
     </div>
 </body>

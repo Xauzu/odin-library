@@ -44,8 +44,8 @@ function displayLibrary() {
 
 // Add book button event handler
 function setup() {
-    const button = document.querySelector('#addBookButton');
-    button.addEventListener('click', (e) => {
+    const addButton = document.querySelector('#addBookButton');
+    addButton.addEventListener('click', (e) => {
         e.preventDefault();
 
         addBookToLibrary(new Book (
@@ -54,7 +54,15 @@ function setup() {
             parseInt(document.querySelector('#pages').value),
             document.querySelector('#read').value === 'on' ? true : false
         ));
+        
+        document.querySelector('.bookForm').classList.add('hide');
+    });
 
+    const cancelButton = document.querySelector('#cancelButton');
+    cancelButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        document.querySelector('.bookForm').classList.add('hide');
     });
 }
 
