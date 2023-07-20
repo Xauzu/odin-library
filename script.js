@@ -23,6 +23,7 @@ function createBookElement(title, author, pages, read, i) {
     bPages.textContent = pages + " pages";
     let bRead = document.createElement('input');
     bRead.setAttribute('type', 'checkbox')
+    bRead.classList.add('bookCheckbox');
     bRead.checked = read;
 
     // Event handler to allow user to change checked state

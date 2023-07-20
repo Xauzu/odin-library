@@ -96,3 +96,9 @@ form > input, form > div > input {
     background-color: rgba(0, 0, 0, 0);
     border: 1px solid black;
 }
+
+.bookCheckbox {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+}
