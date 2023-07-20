@@ -104,9 +104,6 @@ function setup() {
             document.querySelector('.openFormButton').classList.remove('hide');
             document.querySelector('.bookForm').classList.add('hide');
         }
-        else {
-
-        }
     });
 
     const cancelButton = document.querySelector('#cancelButton');
