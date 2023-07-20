@@ -26,6 +26,8 @@ body {
     height: min-content;
 
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
 }
 
 .formControl {
@@ -55,6 +57,7 @@ form {
 form > input, form > div > input {
     background-color: rgba(245, 245, 245, 0.897);
     border: 1px solid black;
+    padding: 4px;
 }
 
 .openFormButton {
@@ -70,4 +73,22 @@ form > input, form > div > input {
 
 .hide {
     display: none;
+}
+
+.book {
+    position: relative;
+    padding: 1rem;
+    width: auto;
+    background-color: rgb(120, 251, 255);
+    border: 1px solid black;
+}
+
+.removeBookButton {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 0.2rem;
+    border-radius: 8px;
+    background-color: rgb(120, 251, 255);
+    border: 1px solid black;
 }

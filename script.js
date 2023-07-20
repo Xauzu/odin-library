@@ -7,10 +7,11 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-function createBookElement(title, author, pages, read) {
+function createBookElement(title, author, pages, read, i) {
     //Display Book
     let newBook = document.createElement('div');
     newBook.setAttribute('class', 'book');
+    newBook.setAttribute('data-id', i);
 
     let bTitle = document.createElement('div');
     bTitle.textContent = title;
@@ -26,6 +27,25 @@ function createBookElement(title, author, pages, read) {
     newBook.appendChild(bPages);
     newBook.appendChild(bRead);
 
+    let x = document.createElement('button');
+    x.textContent = "x";
+    x.addEventListener('click', (e) => {
+        let id = newBook.getAttribute('data-id');
+        myLibrary.splice(id, 1);
+        reloadLibrary();
+    })
+
+    newBook.addEventListener('mouseover', () => {
+        x.classList.remove('hide');
+    })
+    newBook.addEventListener('mouseout', () => {
+        x.classList.add('hide');
+    })
+
+    x.classList.add('removeBookButton', 'hide');
+
+    newBook.appendChild(x);
+
     return newBook;
 }
 
@@ -35,27 +55,19 @@ function addBookToLibrary(book) {
     //Display Book
     const display = document.querySelector('.libraryDisplay');
 
-    display.appendChild(createBookElement(book.title, book.author, book.pages, book.read));
+    display.appendChild(createBookElement(book.title, book.author, book.pages, book.read, myLibrary.length - 1));
 }
 
 
-function displayLibrary() {
+function reloadLibrary() {
     // Reset display
     const display = document.querySelector('.libraryDisplay');
-    display.childNodes.forEach(element => {
-        display.removeChild(element);
-    });
+    display.innerHTML = "";
     
-    myLibrary.forEach(book => {
-        
-    });
+    for (let i = 0; i < myLibrary.length; i++) {
+        display.appendChild(createBookElement(myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].read, i));
+    }
 }
-
-// for (let i = 1; i < 10; i++) {
-//     addBookToLibrary(new Book("Book " + i, "Author " + i, i * 111, Boolean(i % 2)));
-// }
-//
-// console.table(myLibrary);
 
 function resetForm() {
     document.querySelector('#title').value = "";
@@ -104,3 +116,13 @@ function setup() {
 }
 
 setup();
+
+const test = 1;
+
+if (test) {
+    for (let i = 1; i < 10; i++) {
+        addBookToLibrary(new Book("Book " + i, "Author " + i, i * 111, Boolean(i % 2)));
+    }
+
+    reloadLibrary();
+}
