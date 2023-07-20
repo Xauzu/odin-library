@@ -7,33 +7,48 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+function createBookElement(title, author, pages, read) {
+    //Display Book
+    let newBook = document.createElement('div');
+    newBook.setAttribute('class', 'book');
+
+    let bTitle = document.createElement('div');
+    bTitle.textContent = title;
+    let bAuthor = document.createElement('div');
+    bAuthor.textContent = author;
+    let bPages = document.createElement('div');
+    bPages.textContent = pages;
+    let bRead = document.createElement('div');
+    bRead.textContent = read;
+
+    newBook.appendChild(bTitle);
+    newBook.appendChild(bAuthor);
+    newBook.appendChild(bPages);
+    newBook.appendChild(bRead);
+
+    return newBook;
+}
+
 function addBookToLibrary(book) {
     myLibrary.push(book);
 
     //Display Book
     const display = document.querySelector('.libraryDisplay');
-    let newBook = document.createElement('div');
-    newBook.setAttribute('class', 'book');
 
-    let title = document.createElement('div');
-    title.textContent = book.title;
-    let author = document.createElement('div');
-    author.textContent = book.author;
-    let pages = document.createElement('div');
-    pages.textContent = book.pages;
-    let read = document.createElement('div');
-    read.textContent = book.read;
-
-    newBook.appendChild(title);
-    newBook.appendChild(author);
-    newBook.appendChild(pages);
-    newBook.appendChild(read);
-
-    display.appendChild(newBook);
+    display.appendChild(createBookElement(book.title, book.author, book.pages, book.read));
 }
 
-function displayLibrary() {
 
+function displayLibrary() {
+    // Reset display
+    const display = document.querySelector('.libraryDisplay');
+    display.childNodes.forEach(element => {
+        display.removeChild(element);
+    });
+    
+    myLibrary.forEach(book => {
+        
+    });
 }
 
 // for (let i = 1; i < 10; i++) {
