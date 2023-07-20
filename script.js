@@ -42,6 +42,13 @@ function displayLibrary() {
 //
 // console.table(myLibrary);
 
+function resetForm() {
+    document.querySelector('#title').value = "";
+    document.querySelector('#author').value = "";
+    document.querySelector('#pages').value = "";
+    document.querySelector('#read').checked = false;
+}
+
 // Add book button event handler
 function setup() {
     const addButton = document.querySelector('#addBookButton');
@@ -53,18 +60,32 @@ function setup() {
         let pages = parseInt(document.querySelector('#pages').value);
         let read = document.querySelector('#read').checked;
 
-        if (title !== "" && author != "" && pages > 0)
+        if (title !== "" && author != "" && pages > 0) {
             addBookToLibrary(new Book (title, author, pages, read));
         
-        document.querySelector('.bookForm').classList.add('hide');
+            document.querySelector('.openFormButton').classList.remove('hide');
+            document.querySelector('.bookForm').classList.add('hide');
+        }
+        else {
+
+        }
     });
 
     const cancelButton = document.querySelector('#cancelButton');
     cancelButton.addEventListener('click', (e) => {
         e.preventDefault();
         
+        document.querySelector('.openFormButton').classList.remove('hide');
         document.querySelector('.bookForm').classList.add('hide');
     });
+
+    const openFormButton = document.querySelector('.openFormButton');
+    openFormButton.addEventListener('click', (e) => {
+        resetForm();
+
+        document.querySelector('.bookForm').classList.remove('hide');
+        document.querySelector('.openFormButton').classList.add('hide');
+    })
 }
 
 setup();

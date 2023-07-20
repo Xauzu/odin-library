@@ -57,6 +57,17 @@ form > input, form > div > input {
     border: 1px solid black;
 }
 
+.openFormButton {
+    padding: 1rem;
+    border-radius: 4rem;
+    font-size: larger;
+    font-weight: bolder;
+
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
 .hide {
     display: none;
 }
