@@ -48,14 +48,15 @@ function setup() {
     addButton.addEventListener('click', (e) => {
         e.preventDefault();
 
-        addBookToLibrary(new Book (
-            document.querySelector('#title').value,
-            document.querySelector('#author').value,
-            parseInt(document.querySelector('#pages').value),
-            document.querySelector('#read').value === 'on' ? true : false
-        ));
+        let title = document.querySelector('#title').value;
+        let author = document.querySelector('#author').value;
+        let pages = parseInt(document.querySelector('#pages').value);
+        let read = document.querySelector('#read').checked;
+
+        if (title !== "" && author != "" && pages > 0)
+            addBookToLibrary(new Book (title, author, pages, read));
         
-        //document.querySelector('.bookForm').classList.add('hide');
+        document.querySelector('.bookForm').classList.add('hide');
     });
 
     const cancelButton = document.querySelector('#cancelButton');
