@@ -18,7 +18,7 @@ function createBookElement(title, author, pages, read, i) {
     let bAuthor = document.createElement('div');
     bAuthor.textContent = author;
     let bPages = document.createElement('div');
-    bPages.textContent = pages;
+    bPages.textContent = pages + " pages";
     let bRead = document.createElement('div');
     bRead.textContent = read;
 
