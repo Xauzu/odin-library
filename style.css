@@ -83,12 +83,16 @@ form > input, form > div > input {
     border: 1px solid black;
 }
 
+.book.read{
+    background-color: rgb(120, 255, 138);
+}
+
 .removeBookButton {
     position: absolute;
     top: 8px;
     right: 8px;
     padding: 0.2rem;
     border-radius: 8px;
-    background-color: rgb(120, 251, 255);
+    background-color: rgba(0, 0, 0, 0);
     border: 1px solid black;
 }

@@ -10,7 +10,9 @@ function Book(title, author, pages, read) {
 function createBookElement(title, author, pages, read, i) {
     //Display Book
     let newBook = document.createElement('div');
-    newBook.setAttribute('class', 'book');
+    newBook.classList.add('book');
+    if (read)
+        newBook.classList.add('read');
     newBook.setAttribute('data-id', i);
 
     let bTitle = document.createElement('div');
@@ -19,14 +21,22 @@ function createBookElement(title, author, pages, read, i) {
     bAuthor.textContent = author;
     let bPages = document.createElement('div');
     bPages.textContent = pages + " pages";
-    let bRead = document.createElement('div');
-    bRead.textContent = read;
+    let bRead = document.createElement('input');
+    bRead.setAttribute('type', 'checkbox')
+    bRead.checked = read;
+
+    // Event handler to allow user to change checked state
+    bRead.addEventListener('change', (e) => {
+        if (e.target.checked) newBook.classList.add('read');
+        else newBook.classList.remove('read');
+    })
 
     newBook.appendChild(bTitle);
     newBook.appendChild(bAuthor);
     newBook.appendChild(bPages);
     newBook.appendChild(bRead);
 
+    // X button to remove book
     let x = document.createElement('button');
     x.textContent = "x";
     x.addEventListener('click', (e) => {
@@ -34,15 +44,15 @@ function createBookElement(title, author, pages, read, i) {
         myLibrary.splice(id, 1);
         reloadLibrary();
     })
+    x.classList.add('removeBookButton', 'hide');
 
+    // Event handler to show X button
     newBook.addEventListener('mouseover', () => {
         x.classList.remove('hide');
     })
     newBook.addEventListener('mouseout', () => {
         x.classList.add('hide');
     })
-
-    x.classList.add('removeBookButton', 'hide');
 
     newBook.appendChild(x);
 
