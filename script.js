@@ -55,7 +55,7 @@ function setup() {
             document.querySelector('#read').value === 'on' ? true : false
         ));
         
-        document.querySelector('.bookForm').classList.add('hide');
+        //document.querySelector('.bookForm').classList.add('hide');
     });
 
     const cancelButton = document.querySelector('#cancelButton');

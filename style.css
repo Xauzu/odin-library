@@ -39,12 +39,22 @@ body {
 }
 
 form {
+    position: absolute;
+    top: calc(50% - 10rem);
+    left: calc(50% - 10rem);
+
     display: grid;
     justify-content: center;
     width: 20rem;
     gap: 4px;
+    background-color: rgba(255, 255, 255, 0.7);
 
     grid-template-columns: 1fr;
+}
+
+form > input, form > div > input {
+    background-color: rgba(245, 245, 245, 0.897);
+    border: 1px solid black;
 }
 
 .hide {
