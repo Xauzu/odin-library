@@ -1,30 +1,71 @@
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+// function Book(title, author, pages, read) {
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
+// }
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    set title(value) {
+        this._title = value;
+    }
+
+    set author(value) {
+        this._author = value;
+    }
+
+    set pages(value) {
+        this._pages = value;
+    }
+
+    set read(value) {
+        this._read = value;
+    }
+
+    get title() {
+        return this._title;
+    }
+
+    get author() {
+        return this._author;
+    }
+
+    get pages() {
+        return this._pages;
+    }
+
+    get read() {
+        return this._read;
+    }
 }
 
-function createBookElement(title, author, pages, read, i) {
+function createBookElement(book, i) {
     //Display Book
     let newBook = document.createElement('div');
     newBook.classList.add('book');
-    if (read)
+    if (book.read)
         newBook.classList.add('read');
     newBook.setAttribute('data-id', i);
 
     let bTitle = document.createElement('div');
-    bTitle.textContent = title;
+    bTitle.textContent = book.title;
     let bAuthor = document.createElement('div');
-    bAuthor.textContent = author;
+    bAuthor.textContent = book.author;
     let bPages = document.createElement('div');
-    bPages.textContent = pages + " pages";
+    bPages.textContent = book.pages + " pages";
     let bRead = document.createElement('input');
     bRead.setAttribute('type', 'checkbox')
     bRead.classList.add('bookCheckbox');
-    bRead.checked = read;
+    bRead.checked = book.read;
 
     // Event handler to allow user to change checked state
     bRead.addEventListener('change', (e) => {
@@ -69,7 +110,7 @@ function addBookToLibrary(book) {
     //Display Book
     const display = document.querySelector('.libraryDisplay');
 
-    display.appendChild(createBookElement(book.title, book.author, book.pages, book.read, myLibrary.length - 1));
+    display.appendChild(createBookElement(book, myLibrary.length - 1));
 }
 
 
@@ -79,7 +120,7 @@ function reloadLibrary() {
     display.innerHTML = "";
     
     for (let i = 0; i < myLibrary.length; i++) {
-        display.appendChild(createBookElement(myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].read, i));
+        display.appendChild(createBookElement(myLibrary[i], i));
     }
 }
 
