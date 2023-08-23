@@ -56,7 +56,7 @@ form {
 
 form > input, form > div > input {
     background-color: rgba(245, 245, 245, 0.897);
-    border: 1px solid black;
+    border: 2px solid black;
     padding: 4px;
 }
 
@@ -101,4 +101,8 @@ form > input, form > div > input {
     position: absolute;
     bottom: 8px;
     right: 8px;
+}
+
+input:invalid[data-input='1'] {
+    border: 2px solid red;
 }

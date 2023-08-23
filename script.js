@@ -125,25 +125,59 @@ function reloadLibrary() {
 }
 
 function resetForm() {
-    document.querySelector('#title').value = "";
-    document.querySelector('#author').value = "";
-    document.querySelector('#pages').value = "";
+    const title = document.querySelector('#title');
+    const author = document.querySelector('#author');
+    const pages = document.querySelector('#pages');
     document.querySelector('#read').checked = false;
+
+    const data = [title, author, pages];
+    for (let i = 0; i < data.length; i++) {
+        data[i].value = "";
+        data[i].setAttribute('data-input', 0);
+    }
 }
 
 // Add book button event handler
 function setup() {
+    // Setup
+    {
+        const title = document.querySelector('#title');
+        const author = document.querySelector('#author');
+        const pages = document.querySelector('#pages');
+
+        const inputs = [title, author, pages];
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].addEventListener('focus', () => {
+                if (inputs[i].getAttribute('data-input') === '0') inputs[i].setAttribute('data-input', '1');
+            });
+            inputs[i].addEventListener('change', () => {
+                inputs[i].setCustomValidity('');
+            });
+        }
+    }
+
     const addButton = document.querySelector('#addBookButton');
     addButton.addEventListener('click', (e) => {
         e.preventDefault();
 
-        let title = document.querySelector('#title').value;
-        let author = document.querySelector('#author').value;
-        let pages = parseInt(document.querySelector('#pages').value);
+        let title = document.querySelector('#title');
+        let author = document.querySelector('#author');
+        let pages = document.querySelector('#pages');
         let read = document.querySelector('#read').checked;
 
-        if (title !== "" && author != "" && pages > 0) {
-            addBookToLibrary(new Book (title, author, pages, read));
+        const inputs = [title, author, pages];
+
+        let totalValid = 0;
+        for (let i = 0; i < inputs.length; i++) {
+            console.log(inputs[i].checkValidity(), inputs[i].validity.customError, inputs[i].value);
+            if (inputs[i].checkValidity()) {
+                totalValid++;
+            }
+            else inputs[i].setCustomValidity('Cannot be empty.');
+        }
+
+        if (totalValid >= 3) {
+            addBookToLibrary(new Book (title.value, author.value, parseInt(pages.value), read));
         
             document.querySelector('.openFormButton').classList.remove('hide');
             document.querySelector('.bookForm').classList.add('hide');
